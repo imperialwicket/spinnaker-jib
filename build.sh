@@ -26,7 +26,10 @@ cd $rootDir
 
 echo "Pushing this release to s3..."
 sleep 2
-aws s3 cp $buildDir/$release.tar.gz s3://someBucket/spinnaker-jib/
+aws s3 cp $buildDir/$release.tar.gz s3://spinnaker-demo-releases/
+s3Ret=$?
+[ $s3Ret -gt 0 ] && echo "Error uploading $release.tar.gz" && exit $s3Ret
 
-# There is no try, only do.
+echo "Successfully uploaded $release.tar.gz"
 exit 0
+
