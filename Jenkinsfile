@@ -13,7 +13,7 @@ pipeline {
                 sh './test2.sh'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
                 sh './build.sh $(git rev-parse HEAD)'
             }
