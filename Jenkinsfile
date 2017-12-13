@@ -13,10 +13,10 @@ pipeline {
                 sh './test2.sh'
             }
         }
-        stage('Build') {
-            steps {
-                sh './build.sh $(git rev-parse HEAD)'
-            }
+    }
+    post {
+        success {
+            sh './build.sh $(git rev-parse HEAD)'
         }
     }
 }
