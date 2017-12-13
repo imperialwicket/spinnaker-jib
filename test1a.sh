@@ -7,7 +7,7 @@ echo "Doing Test 1A for spinnaker-jib..."
 sleep 5
 
 result="PASS"
-title="Spinnaker Demonstration"
+title="Spinnaker Demo Site"
 echo "Testing for \"$title\" text in title..."
 sleep 2
 titleTest=$(cat src/index.html | grep "$title")
