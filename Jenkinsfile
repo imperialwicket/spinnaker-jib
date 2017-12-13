@@ -13,9 +13,9 @@ pipeline {
                 sh './test2.sh'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Testing something else...'
+                sh './build/sh'
             }
         }
     }
