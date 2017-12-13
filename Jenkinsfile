@@ -4,8 +4,14 @@ pipeline {
     stages {
         stage('Test1') {
             steps {
-                sh './test1a.sh'
-                sh './test1b.sh'
+                parallel (
+                    "Test 1A": {
+                        sh './test1a.sh'
+                    },
+                    "Test 1B": {
+                        sh './test1b.sh'
+                    }
+                )
             }
         }
         stage('Test2') {
