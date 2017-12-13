@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing something else...'
+                sh './build.sh $(git rev-parse HEAD)'
             }
         }
     }
