@@ -31,5 +31,9 @@ s3Ret=$?
 [ $s3Ret -gt 0 ] && echo "Error uploading $release.tar.gz" && exit $s3Ret
 
 echo "Successfully uploaded $release.tar.gz"
+# us-east-1 buckets are all kinds of eventual... so...
+echo "Waiting for s3 object to be available..."
+sleep 30
+
 exit 0
 
