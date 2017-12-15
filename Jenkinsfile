@@ -19,10 +19,11 @@ pipeline {
                 sh './test2.sh'
             }
         }
-    }
-    post {
-        success {
-            sh './build.sh $(git rev-parse HEAD)'
+        stage('Build') {
+            steps {
+                sh './build.sh $(git rev-parse HEAD)'
+                archiveArtifacts artifacts: 'build/*.deb', excludes: null
+            }
         }
     }
 }
