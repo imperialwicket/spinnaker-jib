@@ -1,0 +1,7 @@
+Package: spinnaker-jib
+Architecture: all
+Maintainer: HelloSign Jib Team <ops+jib@hellosign.com>
+Section: misc
+Priority: optional
+Version: VERSION
+Description: spinnaker-jib project for HelloSign
