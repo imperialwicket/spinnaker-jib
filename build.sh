@@ -4,7 +4,9 @@
 # 
 # Expects release version as argument (defaults to "Unknown")
 
+version=0.1.1
 release=$1
+fullversion="${version}-${release:-unknown}"
 buildDir=build
 rootDir=$(pwd)
 echo "Building spinnaker-jib project..."
@@ -18,15 +20,13 @@ echo "Creating new $buildDir directory and generating build..."
 sleep 2
 mkdir $buildDir
 cp src/* $buildDir
-sed -i s/VERSION/${release:-Unknown}/ $buildDir/index.html
+sed -i s/VERSION/${fullversion}/ $buildDir/index.html
 
-cd $buildDir
-tar czf $release.tar.gz *
-cd $rootDir
 
-echo "Pushing this release to s3..."
+echo "Packaging..."
 sleep 2
-aws s3 cp $buildDir/$release.tar.gz s3://someBucket/spinnaker-jib/
+./package.sh $fullversion
 
-# There is no try, only do.
-exit 0
+BUCKET=spinnaker-demo-apt-repo
+PACKAGE_PATH=build
+deb-s3 upload --bucket $BUCKET --arch amd64 --codename trusty --preserve-versions true $PACKAGE_PATH/*.deb

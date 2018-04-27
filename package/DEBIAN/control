@@ -1,0 +1,8 @@
+Package: spinnaker-jib
+Architecture: all
+Maintainer: HelloSign Jib Team <ops+jib@hellosign.com>
+Section: misc
+Priority: optional
+Version: VERSION
+Depends: nginx
+Description: spinnaker-jib project for HelloSign

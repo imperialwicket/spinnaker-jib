@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Enable our nginx site...
+sudo ln -s /etc/nginx/sites-available/spinnaker-jib /etc/nginx/sites-enabled/
+
+# Restart nginx
+sudo service nginx reload
