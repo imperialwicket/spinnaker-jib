@@ -20,6 +20,10 @@ pipeline {
             }
         }
         stage('Build') {
+            when {
+                branch 'master'
+                echo 'Building...'
+            }
             steps {
                 sh './build.sh $(git rev-parse HEAD)'
                 archiveArtifacts artifacts: 'build/*.deb', excludes: null
