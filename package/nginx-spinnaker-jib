@@ -2,8 +2,8 @@
 
 server {
 	listen 80 default_server;
-	root /opt/spinnaker-jib
-	index index.html
+	root /opt/spinnaker-jib;
+	index index.html;
 	location / {
 		try_files $uri $uri/ =404;
 	}
