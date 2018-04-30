@@ -27,3 +27,6 @@ echo "Packaging..."
 sleep 2
 ./package.sh $fullversion
 
+BUCKET=spinnaker-demo-apt-repo
+PACKAGE_PATH=build
+deb-s3 upload --bucket $BUCKET --arch amd64 --codename trusty --preserve-versions true $PACKAGE_PATH/*.deb

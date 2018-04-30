@@ -6,17 +6,17 @@ pipeline {
             steps {
                 parallel (
                     "Test 1A": {
-                        sh './test1a.sh'
+                        sh './test/test1a.sh'
                     },
                     "Test 1B": {
-                        sh './test1b.sh'
+                        sh './test/test1b.sh'
                     }
                 )
             }
         }
         stage('Test2') {
             steps {
-                sh './test2.sh'
+                sh './test/test2.sh'
             }
         }
         stage('Build') {
