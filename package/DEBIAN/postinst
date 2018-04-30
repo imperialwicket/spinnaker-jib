@@ -3,5 +3,8 @@
 # Enable our nginx site...
 sudo ln -s /etc/nginx/sites-available/spinnaker-jib /etc/nginx/sites-enabled/
 
+# Remove 'default' site
+sudo rm -f /etc/nginx/sites-enabled/default
+
 # Restart nginx
 sudo service nginx reload
