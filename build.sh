@@ -8,6 +8,7 @@ version=0.1.1
 release=$1
 fullversion="${version}-${release:-unknown}"
 buildDir=build
+htmlDir=$buildDir/html
 rootDir=$(pwd)
 echo "Building spinnaker-jib project..."
 sleep 5
@@ -16,15 +17,15 @@ echo "Cleaning $buildDir directory..."
 sleep 2
 [ -d $buildDir ] && rm -rf $buildDir
 
-echo "Creating new $buildDir directory and generating build..."
+echo "Creating new $htmlDir directory and generating build..."
 sleep 2
-mkdir $buildDir
-cp src/* $buildDir
+mkdir -p $htmlDir
+cp -r src/* $htmlDir/$
 
 echo "Updating version to ${fullversion}..."
-sed -i s/VERSION/${fullversion}/ $buildDir/index.html
-sed -i s/VERSION/${fullversion}/ $buildDir/health
-
+# Is it safe to just run this on all files in the $buildDir?
+sed -i s/VERSION/${fullversion}/ $htmlDir/index.html
+sed -i s/VERSION/${fullversion}/ $htmlDir/health
 
 echo "Packaging..."
 sleep 2
