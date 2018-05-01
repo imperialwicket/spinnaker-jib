@@ -4,6 +4,23 @@
 	</head>
 	<h1>Jib</h1>
 	<p><a href="https://en.wikipedia.org/wiki/Jib">Wikipedia</a></p>
+
+        <h2>spinnaker-jib</h2>
+        <p>This project is an end-to-end sample for triggering tests (Jenkins) from GitHub and triggering a Spinnaker deploy pipeline from changes to particular branches.<p>
+        <p>Flow and key considerations:
+        <ul>
+          <li>Test and Build/Package scripts are included. The package is a debian package that expects to install on a bare server image (it installs its own dependencies)</li>
+          <li>Test and build/package scripts are executed via jenkins-pipeline using Jenkinsfile in the repo root. Logic for skipping apt repo deploy for non-master branches is located in Jenkinsfile.</li>
+          <li>GitHub is configured with a protected master branch such that you can only merge to master from a pull request that has passed its checks. This is a good place to also require a review (strictly enforcing multiple developer's review of each PR before it can be deployed).</li>
+          <li>After successful tests on the PR, a developer can merge to master, starting another set of tests (these could be the same or different, again controlled in Jenkinsfile).</li>
+          <li>After successful tests on master, the Jenkinsfile executes the build/package scripts and attempts to push a debian package to an apt repository</li>
+          <li>Spinnaker is configured to listen for successful build completion for the spinnaker-jib/master branch. After this success is noticed, Spinnaker triggers its jib-deploy pipeline.</li>
+          <li>Spinnaker's jib-deploy pipeline consists of Bake and Deploy. Bake fetches the latest versioned pacakge from our configured apt repository (matching the master commit) and Deploy takes a successfully baked AMI and deploys it to a new Cluster (a Spinnaker cluster is an autoscaling group in AWS).</li>
+          <li>The test config is an automated red/black deploy with rollback capability. This means as soon as the new cluster is healthy, the old cluster is disabled (not destroyed). Someone can review post deploy and manually revert or destroy the old cluster</li>
+        </ul>
+        </p>
+
+        <h4>Meta</h4>
 	<p>Release: VERSION</p>
 	<p>Contributors:
 	  <ul>
