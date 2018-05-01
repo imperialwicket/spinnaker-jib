@@ -20,7 +20,7 @@ sleep 2
 echo "Creating new $htmlDir directory and generating build..."
 sleep 2
 mkdir -p $htmlDir
-cp -r src/* $htmlDir/$
+cp -r src/* $htmlDir/
 
 echo "Updating version to ${fullversion}..."
 # Is it safe to just run this on all files in the $buildDir?
