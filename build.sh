@@ -20,7 +20,10 @@ echo "Creating new $buildDir directory and generating build..."
 sleep 2
 mkdir $buildDir
 cp src/* $buildDir
+
+echo "Updating version to ${fullversion}..."
 sed -i s/VERSION/${fullversion}/ $buildDir/index.html
+sed -i s/VERSION/${fullversion}/ $buildDir/health
 
 
 echo "Packaging..."
