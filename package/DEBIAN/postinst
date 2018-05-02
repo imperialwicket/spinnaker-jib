@@ -7,4 +7,8 @@ sudo ln -s /etc/nginx/sites-available/spinnaker-jib /etc/nginx/sites-enabled/
 sudo rm -f /etc/nginx/sites-enabled/default
 
 # Restart nginx
-sudo service nginx reload
+if [ -f /bin/systemctl ]; then
+  sudo systemctl reload nginx
+else
+  sudo service nginx reload
+fi
