@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Spinnaker Demo Site - Job - Breaky</title>
+		<title>Spinnaker Demo Site - Jib</title>
 	</head>
 	<h1>Jib</h1>
 	<p><a href="https://en.wikipedia.org/wiki/Jib">Wikipedia</a></p>
@@ -15,7 +15,7 @@
           <li>After successful tests on the PR, a developer can merge to master, starting another set of tests (these could be the same or different, again controlled in Jenkinsfile).</li>
           <li>After successful tests on master, the Jenkinsfile executes the build/package scripts and attempts to push a debian package to an apt repository</li>
           <li>Spinnaker is configured to listen for successful build completion for the spinnaker-jib/master branch. After this success is noticed, Spinnaker triggers its jib-deploy pipeline.</li>
-          <li>Spinnaker's jib-deploy pipeline consists of Bake and Deploy. Bake fetches the latest versioned pacakge from our configured apt repository (matching the master commit) and Deploy takes a successfully baked AMI and deploys it to a new Cluster (a Spinnaker cluster is an autoscaling group in AWS).</li>
+          <li>Spinnaker's jib-deploy pipeline consists of Bake and Deploy. Bake fetches the latest versioned package from our configured apt repository (matching the master commit) and Deploy takes a successfully baked AMI and deploys it to a new Cluster (a Spinnaker cluster is an autoscaling group in AWS).</li>
           <li>The test config is an automated red/black deploy with rollback capability. This means as soon as the new cluster is healthy, the old cluster is disabled (not destroyed). Someone can review post deploy and manually revert or destroy the old cluster</li>
         </ul>
         </p>
